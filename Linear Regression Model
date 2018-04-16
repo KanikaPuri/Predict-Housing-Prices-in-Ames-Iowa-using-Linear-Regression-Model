@@ -54,3 +54,15 @@ test_mse = mean_squared_error(test_predictions,test['SalePrice'])
 train_rmse = train_mse**0.5
 test_rmse = test_mse**0.5
 
+#Multivariate Model
+cols = ['Overall Cond', 'Gr Liv Area']
+
+lr.fit(train[cols],train['SalePrice'])
+
+train_predictions = lr.predict(train[cols])
+test_predictions = lr.predict(test[cols])
+
+mse_1 = mean_squared_error(train_predictions,train['SalePrice'])
+mse_2  =  mean_squared_error(test_predictions,test['SalePrice'])
+train_rmse_2 = mse_1**0.5
+test_rmse_2 = mse_2**0.5
