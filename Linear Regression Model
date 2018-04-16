@@ -109,3 +109,13 @@ train_predictions=lr.predict(train[features])
 test_predictions=lr.predict(clean_test[features])
 train_rmse = mean_squared_error(train_predictions,train[target])**0.5
 test_rmse = mean_squared_error(test_predictions,clean_test[target])**0.5
+
+#Rescale so all values are normalized
+
+unit_train = (train[features] - train[features].min())/(train[features].max() - train[features].min())
+print(unit_train.min())
+print(unit_train.max())
+# Confirmed: the min and max values are 0.0 and 1.0 respectively
+
+sorted_vars = unit_train.var().sort_values()
+print(sorted_vars)
